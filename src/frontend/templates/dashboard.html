@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>香港疫情数据可视化大屏</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- 头部标题 -->
+        <header class="dashboard-header">
+            <h1>🏥 香港疫情数据可视化大屏</h1>
+            <div class="update-time">
+                <span>最后更新: </span>
+                <span id="updateTime"></span>
+            </div>
+        </header>
+
+        <!-- 统计摘要卡片 -->
+        <section class="summary-cards">
+            <div class="card">
+                <div class="card-icon">🦠</div>
+                <div class="card-content">
+                    <h3>总新增确诊</h3>
+                    <div class="card-number" id="totalCases">-</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <div class="card-content">
+                    <h3>平均每日新增</h3>
+                    <div class="card-number" id="avgDaily">-</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <div class="card-content">
+                    <h3>最高单日新增</h3>
+                    <div class="card-number" id="maxDaily">-</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">💚</div>
+                <div class="card-content">
+                    <h3>总康复人数</h3>
+                    <div class="card-number" id="totalRecovered">-</div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-icon">🕊️</div>
+                <div class="card-content">
+                    <h3>总死亡人数</h3>
+                    <div class="card-number" id="totalDeaths">-</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 图表区域 -->
+        <section class="charts-section">
+            <!-- 第一行：总体趋势和区域对比 -->
+            <div class="chart-row">
+                <div class="chart-container">
+                    <h3>📈 每日新增确诊趋势</h3>
+                    <div id="dailyTrendChart" class="chart"></div>
+                </div>
+                <div class="chart-container">
+                    <h3>🏘️ 各区域确诊对比</h3>
+                    <div id="regionalChart" class="chart"></div>
+                </div>
+            </div>
+
+            <!-- 第二行：风险等级分布和月度统计 -->
+            <div class="chart-row">
+                <div class="chart-container">
+                    <h3>⚠️ 风险等级分布</h3>
+                    <div id="riskChart" class="chart"></div>
+                </div>
+                <div class="chart-container">
+                    <h3>📅 月度疫情统计</h3>
+                    <div id="monthlyChart" class="chart"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 底部信息 -->
+        <footer class="dashboard-footer">
+            <p>数据来源：香港各区疫情数据 | 更新时间：2022年1月1日 - 6月29日</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
